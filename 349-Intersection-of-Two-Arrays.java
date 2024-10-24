@@ -1,16 +1,6 @@
 class Solution {
     public int[] intersection(int[] nums1, int[] nums2) {
-        int a=0;
-        int b=0;
-        if(nums1.length<=nums2.length){
-            a=nums2.length;
-            b=nums1.length;
-        }
-        else {
-            a=nums1.length;
-            b=nums2.length;
-        }
-        int[] arr=new int[b];
+        /*int[] arr=new int[nums1.length];
         Arrays.fill(arr, -1);
         int c=0;
         for(int i =0;i<nums1.length;++i){
@@ -30,15 +20,14 @@ class Solution {
                 cc++;
             }
         }
-        int[] ans=new int[b-cc];
+        int[] ans=new int[nums1.length-cc];
 
-        for(int i=0;i<b-cc;i++){
+        for(int i=0;i<nums1.length-cc;i++){
             ans[i]=arr[i];
         }
 
         return ans;
-    }
-    public boolean check(int che,int[] arr){
+        public boolean check(int che,int[] arr){
         int c=0;
         for(int i=0;i<arr.length;++i){
             if(arr[i]==che){
@@ -46,5 +35,23 @@ class Solution {
             }
         }
         return c==0;
+    }*/
+        boolean[] ch=new boolean[1001];
+        for(int i=0;i<nums1.length;++i){
+            ch[nums1[i]]=true;
+        }   
+        int c=0;
+        for(int i=0;i<nums2.length;++i){
+            if(ch[nums2[i]]){
+                nums1[c++]=nums2[i];
+                ch[nums2[i]]=false;
+            }
+        }
+        int[] result=new int[c];
+        for(int i=0;i<c;++i){
+            result[i]=nums1[i];
+        }
+        return result;
     }
+    
 }

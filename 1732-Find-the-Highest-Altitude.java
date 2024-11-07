@@ -7,7 +7,6 @@ class Solution {
             gain[i]=sum;
             if(max<sum)max=sum;
         }
-        Arrays.sort(gain);
         return max;
 
     }

@@ -1,6 +1,7 @@
 class Solution {
+    int index=0;
     public int calculate(String s) {
-        int number = 0;
+        /*int number = 0;
         int signValue = 1;
         int result = 0;
         Stack<Integer> operationsStack = new Stack<>();
@@ -27,6 +28,32 @@ class Solution {
             }
         }
 
-        return result + number * signValue;
+        return result + number * signValue;*/
+        return fn(s);
+    }
+
+    public int fn(String s){
+        int number=0;
+        int res=0;
+        int sign=1;
+        while(index<s.length()){
+            char c=s.charAt(index++);
+            if(c==' ')continue;
+            else if(c>='0'&&c<='9'){
+                number=number*10 + (c-'0');
+            }
+            else if(c=='+' || c=='-'){
+                res= res + number*sign;
+                number=0;
+                sign=(c=='+')?1:-1;
+            }
+            else if (c=='('){
+                number=fn(s);
+            }
+            else if(c==')'){
+                return res=res + number*sign;
+            }
+        }
+        return res + number*sign;
     }
 }

@@ -1,12 +1,20 @@
 class Solution {
 public:
-    int numIdenticalPairs(vector<int>& nums) {
-        int count=0;
-        for(int i=0;i<nums.size()-1;++i){
-            for(int j=i+1;j<nums.size();++j){
-                if(nums[i]==nums[j])count++;
+    int f(int x, vector<int>& nums){
+        int c=0;
+        for(int i=0;i<x;++i){
+            if(nums[i]==nums[x]){
+                c++;
             }
         }
-        return count;
+        return c;
     }
+    int numIdenticalPairs(vector<int>& nums) {
+        int ans=0;
+        for(int x=0;x<nums.size();++x){
+            ans+=f(x,nums);
+        }
+        return ans;
+    }
+
 };

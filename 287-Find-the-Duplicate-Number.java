@@ -1,20 +1,23 @@
 class Solution {
     public int findDuplicate(int[] nums) {
-        /*Arrays.sort(nums);
-        for(int i=0;i<nums.length-1;++i){
-            if(nums[i]==nums[i+1]){
-                return nums[i];
+        int idx=0;
+        int n= nums.length;
+        while(idx<n){
+            if(nums[idx]!=idx+1){
+                int curr=nums[idx]-1;
+                if(nums[idx]!=nums[curr]){
+                    nums[idx]=nums[idx]^nums[curr];
+                    nums[curr]=nums[idx]^nums[curr];
+                    nums[idx]=nums[idx]^nums[curr];
+                }
+                else{
+                    return nums[idx];
+                }
             }
-        }
-        return nums[0];*/
-        boolean arr[]=new boolean[nums.length];
-        for(int n:nums){
-            if(arr[n]){
-                return n;
+            else{
+                idx++;
             }
-            arr[n]=true;
         }
         return 404;
-
     }
 }
